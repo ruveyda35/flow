@@ -1,0 +1,113 @@
+<template>
+
+    <div class="slds-grid">
+
+    <lightning-card title="Quick Payment" icon-name="custom:custom85"></lightning-card></div>
+    <lightning-card >
+    <div class="slds-grid slds-wrap" >
+        <div class="slds-col slds-size_1-of-12" style="padding-left: 10px;"></div>
+        <div class="slds-col slds-size_6-of-12">
+    <template if:true={recordTypeOptions}>
+        <label  style="font-size: medium;"> Payment Method </label>
+                <lightning-combobox
+                placeholder="Payment Method"
+                    value={value}
+                    options={recordTypeOptions}
+                    onchange={handleChange}>
+                </lightning-combobox>
+    
+</template></div>
+    </div>
+   <br><br>
+        <div class="slds-grid slds-wrap"  >
+            <div class="slds-col slds-size_1-of-12" ></div>
+            <div class="slds-col slds-size_6-of-12">
+                
+       <template if:true={isCredetCart}>
+        <div class="form-group">
+            <label>⁕ Credit Card Number </label>
+            <lightning-input
+            name="Credit_Card_Number__c"
+            value={payment.Credit_Card_Number__c}
+            onchange={handleFieldChange}>
+        </lightning-input>
+           </div>
+    <br><br>
+      
+    <div class="slds-grid slds-wrap " >
+        <label style="font-size: medium;">⁕ Credit Card Expiration</label>
+        <div class="slds-grid slds-gutters slds-wrap">
+            
+            <div class="slds-col slds-size_1-of-3">
+                
+                <lightning-combobox
+                    name="Credit_Card_Expiration_month__c"
+                    placeholder="Month"
+                    value={payment.Credit_Card_Expiration_month__c}
+                    options={monthOptions}
+                    onchange={handleFieldChange}>
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-combobox
+                    name="Expiration_Year__c"
+                    placeholder="Year"
+                    value={payment.Expiration_Year__c}
+                    options={yearOptions}
+                    onchange={handleFieldChange}>
+                </lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-input
+                    type="password"
+                    label="CVV"
+                    name="Credit_Card_Security_Code__c"
+                    value={payment.Credit_Card_Security_Code__c}
+                    onchange={handleFieldChange}>
+                </lightning-input>
+            </div>
+        </div>
+    </div>
+    <br><br>
+        
+       </template>
+            </div>
+            <template if:true={isCheck}>
+                <div class="slds-grid slds-wrap " >
+                    <div class="slds-grid slds-gutters slds-wrap" style="margin-left: 30px;">
+                        <div class="slds-col slds-size_1-of-2" >
+                <div class="form-group">
+                    <label>Check Account Number </label>
+                    <lightning-input
+                    name="Check_Account_Number__c"
+                    value={payment.Check_Account_Number__c}
+                    onchange={handleFieldChange}>
+                </lightning-input>
+                   </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2" >
+                   <div class="form-group">
+                    <label>Check Routing Number </label>
+                    <lightning-input
+                    name="Check_Routing_Number__c"
+                    value={payment.Check_Routing_Number__c}
+                    onchange={handleFieldChange}>
+                </lightning-input>
+                   </div></div>
+                        </div></div>
+            </template> 
+        </div>
+            <br>
+        <lightning-button variant="brand" label="Pay Now" onclick={handleSavePayment}></lightning-button>
+    </lightning-card>
+
+    <template if:true={paymentSuccess}>
+        <lightning-card title="Payment Confirmation" icon-name="utility:success">
+            <p class="slds-p-horizontal_small">Thank you! Your payment was successful.</p>
+        </lightning-card>
+    </template>
+
+    <!-- lightning-button variant="brand" label="Pay Now" onclick={handleSavePayment}></lightning-button>
+    </template>   -->
+    <input type="text">
+</template>
